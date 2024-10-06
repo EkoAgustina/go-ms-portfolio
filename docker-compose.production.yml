@@ -38,7 +38,7 @@ services:
       - REDIS_PORT=$REDIS_PORT
       - REDIS_PASSWORD=$REDIS_PASSWORD
     volumes:
-      - /Users/ekoagustina/Documents/Project/BE/go/Portfolio/env_go_ms_portfolio/.env.production:/app/ms_portfolio/.env.production
+      - /home/project/portfolio/backend_portfolio/go_ms-portfolio/dotenv_file/.env.production:/app/ms_portfolio/.env.production
     stdin_open: true
     tty: true
     networks:
