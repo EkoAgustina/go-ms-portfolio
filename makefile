@@ -6,7 +6,7 @@ ENV_PROD=/home/project/portfolio/backend_portfolio/go_ms-portfolio/dotenv_file/.
 
 # Docker Compose files
 DOCKER_COMPOSE_DEV=docker-compose -f docker-compose.development.yml --env-file $(ENV_DEV)
-DOCKER_COMPOSE_PROD=docker-compose -f docker-compose.production.yml --env-file $(ENV_PROD)
+DOCKER_COMPOSE_PROD=docker-compose -f /home/project/portfolio/backend_portfolio/go_ms-portfolio/go_ms-portfolio/docker-compose.production.yml --env-file $(ENV_PROD)
 
 .PHONY: dev prod
 
