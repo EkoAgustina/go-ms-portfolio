@@ -16,3 +16,9 @@ dev:
 prod:
 	$(DOCKER_COMPOSE_PROD) up -d --build
 
+dev-restart:
+	$(DOCKER_COMPOSE_DEV) up -d --build
+
+prod-restart:
+	$(DOCKER_COMPOSE_PROD) up -d --build
+
