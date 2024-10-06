@@ -12,6 +12,9 @@ WORKDIR /home/project/portfolio/backend_portfolio/go_ms-portfolio
 # Salin go.mod dan go.sum
 COPY go.mod go.sum ./
 
+# Bersihkan cache modul
+RUN go clean -modcache
+
 # Unduh dependencies
 RUN go mod download
 
