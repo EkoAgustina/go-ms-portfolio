@@ -8,6 +8,5 @@
 *.njsproj
 *.sln
 *.sw?
-go.sum
 *.local
 .env.*
