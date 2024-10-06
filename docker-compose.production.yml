@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  postgresdb_ms_portfolio_production:
+    image: postgres
+    restart: unless-stopped
+    container_name: go_postgresdb_ms_portfolio_production
+    environment:
+      - POSTGRES_USER=$DB_USER
+      - POSTGRES_PASSWORD=$DB_PASSWORD
+      - POSTGRES_DB=$DB_NAME
+      - TZ=Asia/Jakarta
+    ports:
+      - $DB_PORT:5432
+    volumes:
+      - postgresdb_ms_portfolio_production_volume:/var/lib/postgres
+    networks:
+      - portfolio-backend-network
+
+  ms_portfolio_production:
+    container_name: go_ms_portfolio_production
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: Dockerfile.production
+    ports:
+      - $GO_PORT:$GO_PORT
+    depends_on:
+      - postgresdb_ms_portfolio_production
+    environment:
+      - DB_HOST=go_postgresdb_ms_portfolio_production
+      - DB_PORT=5432
+      - DB_USER=$DB_USER
+      - DB_PASSWORD=$DB_PASSWORD
+      - DB_NAME=$DB_NAME
+      - TZ=Asia/Jakarta
+      - REDIS_HOST=$REDIS_HOST
+      - REDIS_PORT=$REDIS_PORT
+      - REDIS_PASSWORD=$REDIS_PASSWORD
+    volumes:
+      - /Users/ekoagustina/Documents/Project/BE/go/Portfolio/env_go_ms_portfolio/.env.production:/app/ms_portfolio/.env.production
+    stdin_open: true
+    tty: true
+    networks:
+      - portfolio-backend-network
+
+volumes:
+  postgresdb_ms_portfolio_production_volume:
+
+networks:
+  portfolio-backend-network:
+    external: true

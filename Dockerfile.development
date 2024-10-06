@@ -1,0 +1,28 @@
+# Gunakan gambar dasar golang
+FROM golang:1.22
+
+# Set environment
+ENV GO111MODULE=on
+ENV GIN_MODE=release
+ENV ENV_FILE=/app/ms_portfolio/.env.development
+
+# Buat direktori kerja
+WORKDIR /Users/ekoagustina/Documents/Project/BE/go/Portfolio/go_ms-portfolio
+
+# Salin go.mod dan go.sum
+COPY go.mod go.sum ./
+
+# Unduh dependencies
+RUN go mod download
+
+# Salin kode aplikasi
+COPY . .
+
+# Build aplikasi
+RUN go build -o main .
+
+# Expose port yang digunakan aplikasi
+EXPOSE 6900
+
+# Jalankan aplikasi
+CMD go run main.go
